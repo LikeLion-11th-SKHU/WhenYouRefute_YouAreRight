@@ -43,7 +43,7 @@
 
 <body>
     <div class="content">
-        <form action="{% url 'youareright:write_board' %}" method="post">
+        <form action="{% url 'youareright:write_board' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
             <div style="text-align:right;padding: 5px;">
@@ -63,6 +63,16 @@
                         <td style="padding:10px;">
                             <textarea name="detail" id="detail" rows="10">{{ board.content }}</textarea>
                         </td>
+
+                    </tr>
+                    <tr>
+                        <td class="td_file" style="text-align:center;">첨부파일</td>
+                        <td style="padding:10px;">
+                            <input type="file" name="file" id="file" />
+                        </td>
+                        <td>이미지</td>
+                        <td>
+                            <input type="file" name="image">
                     </tr>
                 </tbody>
             </table>

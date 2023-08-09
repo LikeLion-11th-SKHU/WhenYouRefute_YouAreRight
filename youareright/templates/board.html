@@ -21,7 +21,8 @@
             <thead>
                 <tr class="header">
                     <th style="width:10%;">순번</th>
-                    <th style="width:60%">제목</th>
+                    <th style="width:50%">제목</th>
+                    <th style="width:13%">조회수</th>
                     <th style="width:30%">작성일자</th>
                 </tr>
             </thead>
@@ -35,6 +36,7 @@
                             {{ data.title }}
                         </a>
                     </td>
+                    <td style="text-align:center;">{{ data.hit }}</td>
                     <td>{{ data.pub_date|date:'Y-m-d' }}</td>
                 </tr>
                 {% endfor %}

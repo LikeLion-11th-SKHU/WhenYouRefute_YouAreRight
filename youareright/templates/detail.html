@@ -66,6 +66,15 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="td_count" style="text-align:center; width:20%;">조회수</td>
+                    <td style="padding:10px;">
+                        <span>{{ board.hit }}
+
+                    </td>
+
+
+                </tr>
+                <tr>
                     <td class="td_title" style="text-align:center; width:20%;">작성일자</td>
                     <td style="padding:10px;">
                         <span>{{ board.pub_date }}</span>
@@ -77,10 +86,22 @@
                         <textarea name="detail" id="detail" rows="10" readonly>{{ board.content }}</textarea>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                        {% if board.file %}<a href="{{ board.file.url }}">{{ board.file.name }}</a>{% endif %}
+                    </td>
+                    <td>
+                        {% if board.image %}<img src="{{ board.image.url }}" alt="image"
+                            style="width:100%; height:100%;">{% endif %}
+
+                    </td>
+                </tr>
             </tbody>
         </table>
         <div style="text-align:left;">
-            <a href="{% url 'youareright:board' %}">> Home</a>
+            <a href="{% url 'youareright:edit' board.id %}">> 수정</a>
+            <a href="{% url 'youareright:delete' board.id %}">> 삭제</a>
+            <a href="{% url 'youareright:board' %}">> 메인</a>
         </div>
 
         <form action="{% url 'youareright:create_reply' board.id %}" method="post">

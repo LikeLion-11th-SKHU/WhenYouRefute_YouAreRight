@@ -9,6 +9,9 @@ class Board(models.Model):
     author = models.CharField(max_length=100)
     like_count = models.PositiveBigIntegerField(default=0)
     pub_date = models.DateTimeField()
+    File = models.FileField(upload_to="files/", null=True, blank=True)
+    image = models.ImageField(upload_to="images/", null=True, blank=True)
+    hit = models.PositiveBigIntegerField(default=0)
 
     def __str__(self):
         return self.title
