@@ -1,51 +1,92 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/youareright/static/css/board.css">
-    <title>Board</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/youareright/static/css/board.css">
+	<title>Board</title>
 </head>
 
 <body>
-    <div class="content">
-        <div class="header">
-            <h2>{{ title }}</h2>
-        </div>
-        <div style="text-align:right">
-            <a href="{% url 'youareright:write' %}">글쓰기</a>
-        </div>
+	<div class="content">
+		{% for alias, category in category_list %}
+		<li><a href="/{{ alias }}/">{{ category }}</a></li>
+		{% endfor %}
+		<div class="header">
+			<h2>{{ title }}</h2>
+		</div>
+		<div style="text-align:right">
+			<a href="{% url 'youareright:write' %}">글쓰기</a>
+		</div>
 
-        <table class="board">
-            <thead>
-                <tr class="header">
-                    <th style="width:10%;">순번</th>
-                    <th style="width:60%">제목</th>
-                    <th style="width:30%">작성일자</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% if board_list %}
-                {% for data in board_list %}
-                <tr class="{% if forloop.counter|divisibleby:2 %}even_bgcolor{% endif %}">
-                    <td style="text-align:center;">{{ forloop.counter }}</td>
-                    <td>
-                        <a href="{% url 'youareright:detail' data.id %}">
-                            {{ data.title }}
-                        </a>
-                    </td>
-                    <td>{{ data.pub_date|date:'Y-m-d' }}</td>
-                </tr>
-                {% endfor %}
-                {% else %}
-                <tr>
-                    <td>작성된 게시글이 없습니다.</td>
-                </tr>
-                {% endif %}
-            </tbody>
-        </table>
-    </div>
+		<input type="radio" name="button" value="사회" id="so_r" checked>
+		<label for="so_r">사회</label>
+		<input type="radio" name="button" value="문화" id="cu_r">
+		<label for="cu_r">문화</label>
+		<input type="radio" name="button" value="정치" id="po_r">
+		<label for="po_r">정치</label>
+		<input type="radio" name="button" value="경제" id="ec_r">
+		<label for="ec_r">경제</label>
+		<input type="radio" name="button" value="연예" id="en_r">
+		<label for="en_r">연예</label>
+		<input type="radio" name="button" value="자유" id="fr_r">
+		<label for="fr_r">자유</label>
+
+
+				<div id="SO" style="display: block;">
+					{% for data in board_list %}
+						{% if data.category == 'SOCIETY' %}
+							<a href="{% url 'youareright:detail' data.id %}">제목 : {{ data.title }}</a><br>
+							{{ data.hashtag }}<br>
+						{% endif %}
+					{% endfor %}
+				</div>
+
+				<div id="CU" style="display: none;">
+					{% for data in board_list %}
+						{% if data.category == 'CULTURE' %}
+							<a href="{% url 'youareright:detail' data.id %}">제목 : {{ data.title }}</a><br>
+						{% endif %}
+					{% endfor %}
+				</div>
+
+				<div id="PO" style="display: none;">
+					{% for data in board_list %}
+						{% if data.category == 'POLITICS' %}
+							<a href="{% url 'youareright:detail' data.id %}">제목 : {{ data.title }}</a><br>
+						{% endif %}
+					{% endfor %}
+				</div>
+
+				<div id="EC" style="display: none;">
+					{% for data in board_list %}
+						{% if data.category == 'ECONOMY' %}
+							<a href="{% url 'youareright:detail' data.id %}">제목 : {{ data.title }}</a><br>
+						{% endif %}
+					{% endfor %}
+				</div>
+
+				<div id="EN" style="display: none;">
+					{% for data in board_list %}
+						{% if data.category == 'ENTERTAINMENT' %}
+							<a href="{% url 'youareright:detail' data.id %}">제목 : {{ data.title }}</a><br>
+						{% endif %}
+					{% endfor %}
+				</div>
+
+				<div id="FR" style="display: none;">
+					{% for data in board_list %}
+						{% if data.category == 'FREE' %}
+							<a href="{% url 'youareright:detail' data.id %}">제목 : {{ data.title }}</a><br>
+						{% endif %}
+					{% endfor %}
+				</div>
+
+
+	</div>
+	<script src="{% static 'js/category.js' %}"></script>
 </body>
 
 </html>

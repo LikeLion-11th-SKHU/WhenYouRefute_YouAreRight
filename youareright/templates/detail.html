@@ -1,5 +1,6 @@
+{% load make_hashtag_link %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
@@ -62,7 +63,7 @@
                 <tr>
                     <td class="td_title" style="text-align:center; width:20%;">제목</td>
                     <td style="padding:10px;">
-                        <input type="text" name="title" id="title" value="{{ board.title }}" readonly />
+											{{ board.title }}
                     </td>
                 </tr>
                 <tr>
@@ -73,12 +74,13 @@
                 </tr>
                 <tr>
                     <td class="td_title" style="text-align:center;">내용</td>
-                    <td style="padding:10px;">
-                        <textarea name="detail" id="detail" rows="10" readonly>{{ board.content }}</textarea>
-                    </td>
                 </tr>
             </tbody>
         </table>
+				{{ board|hashtag_link|safe }}
+
+
+				{{ board.count }}
         <div style="text-align:left;">
             <a href="{% url 'youareright:board' %}">> Home</a>
         </div>
