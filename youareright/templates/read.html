@@ -1,0 +1,13 @@
+<title> Read</title>
+
+
+
+<h1>Read Page</h1>
+<hr>
+{% for post in post %}
+<h3><a href="{% url 'detail' post.title %}">{{ post.title}}</a></h3>
+<p>조회수 :{{post.count}}</p>
+<p>{{post.pub_date}}</p>
+<p>{{post.user_name}}</p>
+{% endfor %}
+<a href="{% url 'index' %}">메인</a>

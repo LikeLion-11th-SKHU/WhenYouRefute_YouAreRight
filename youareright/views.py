@@ -1,69 +1,56 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
+from .forms import PostForm
 from django.utils import timezone
-from django.urls import reverse
+from .models import Post
 
-from .models import Board, Reply
-
-
-def main(request):
-    return render(request, "main.html")
+# Create your views here.
 
 
-def board(request):
-    all_boards = Board.objects.all().order_by("-pub_date")
-    return render(
-        request, "board.html", {"title": "Board List", "board_list": all_boards}
-    )
+def index(request):
+    return render(request, "board.html")
 
 
-def detail(request, board_id):
-    board = Board.objects.get(id=board_id)
-    count = board.hit
-    board.hit = count + 1
-    board.save()
-
-    return render(request, "detail.html", {"board": board})
-
-
-def write(request):
-    return render(request, "write.html")
-
-
-def write_board(request):
-    b = Board(
-        title=request.POST["title"],
-        content=request.POST["detail"],
-        author="jun",
-        pub_date=timezone.now(),
-        File=request.FILES["file"],
-        image=request.FILES["image"],
-    )
-    b.save()
-    return HttpResponseRedirect(reverse("youareright:board"))
+def create(request):
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.pub_date = timezone.now()
+            form.count = 0
+            form.save()
+            return redirect("read")
+    else:
+        form = PostForm()
+        return render(request, "create.html", {"form": form})
 
 
-def create_reply(request, board_id):
-    b = Board.objects.get(id=board_id)
-    b.reply_set.create(comment=request.POST["comment"], rep_date=timezone.now())
-    return HttpResponseRedirect(reverse("youareright:detail", args=(board_id,)))
+def read(request):
+    post = Post.objects.all()
+    return render(request, "read.html", {"post": post})
 
 
-def edit(request, board_id):
-    board = Board.objects.get(id=board_id)
-    return render(request, "edit.html", {"board": board})
+def detail(request, title):
+    post = get_object_or_404(Post, title=title)
+    post.count += 1
+    post.save()
+    return render(request, "detail.html", {"post": post})
 
 
-def update(request, board_id):
-    b = Board.objects.get(id=board_id)
-    b.title = request.POST["title"]
-    b.pub_date = timezone.now()
-    b.content = request.POST["content"]
-    b.save()
-    return HttpResponseRedirect(reverse("youareright:detail", args=(board_id,)))
+def update(request, title):
+    post = get_object_or_404(Post, title=title)
+    if request.method == "POST":
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.pub_date = timezone.now()
+            form.save()
+            return redirect("read")
+    else:
+        form = PostForm(instance=post)
+        return render(request, "update.html", {"form": form})
 
 
-def delete(request, board_id):
-    b = Board.objects.get(id=board_id)
-    b.delete()
-    return HttpResponseRedirect(reverse("youareright:board"))
+def delete(request, title):
+    post = get_object_or_404(Post, title=title)
+    post.delete()
+    return redirect("read")

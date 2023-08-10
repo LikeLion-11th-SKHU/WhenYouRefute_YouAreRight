@@ -1,53 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/youareright/static/css/board.css">
-    <title>Board</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Main</title>
 </head>
 
 <body>
-    <div class="content">
-        <div class="header">
-            <h2>{{ title }}</h2>
-        </div>
-        <div style="text-align:right">
-            <a href="{% url 'youareright:write' %}">글쓰기</a>
-        </div>
-
-        <table class="board">
-            <thead>
-                <tr class="header">
-                    <th style="width:10%;">순번</th>
-                    <th style="width:50%">제목</th>
-                    <th style="width:13%">조회수</th>
-                    <th style="width:30%">작성일자</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% if board_list %}
-                {% for data in board_list %}
-                <tr class="{% if forloop.counter|divisibleby:2 %}even_bgcolor{% endif %}">
-                    <td style="text-align:center;">{{ forloop.counter }}</td>
-                    <td>
-                        <a href="{% url 'youareright:detail' data.id %}">
-                            {{ data.title }}
-                        </a>
-                    </td>
-                    <td style="text-align:center;">{{ data.hit }}</td>
-                    <td>{{ data.pub_date|date:'Y-m-d' }}</td>
-                </tr>
-                {% endfor %}
-                {% else %}
-                <tr>
-                    <td>작성된 게시글이 없습니다.</td>
-                </tr>
-                {% endif %}
-            </tbody>
-        </table>
-    </div>
+	<H1>Main 페이지입니다.</H1>
+	<a href="{% url 'create' %}">글 작성하기</a>
+	<a href="{% url 'read' %}">글 모아보기</a>
 </body>
 
 </html>
