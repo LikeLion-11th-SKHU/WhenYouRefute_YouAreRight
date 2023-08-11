@@ -4,6 +4,7 @@
 
 <h1>Read Page</h1>
 <hr>
+<a href="{% url 'create' %}">글 작성하기</a>
 {% for post in post %}
 <h3><a href="{% url 'detail' post.title %}">{{ post.title}}</a></h3>
 <p>조회수 :{{post.count}}</p>
