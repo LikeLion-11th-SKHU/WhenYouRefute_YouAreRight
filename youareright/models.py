@@ -24,7 +24,6 @@ class Board(models.Model):
     author = models.CharField(max_length=100)
     like_count = models.PositiveBigIntegerField(default=0)
     pub_date = models.DateTimeField()
-    hashtag_field = models.CharField(max_length=100, default='')
     hashtags = models.ManyToManyField('Hashtag', blank=True)
 
     def __str__(self):
@@ -42,7 +41,8 @@ class Reply(models.Model):
 
 class Hashtag(models.Model):
     content = models.TextField(unique=True)
-    count = models.PositiveBigIntegerField(default=0)
+    count = models.PositiveBigIntegerField(default=1)
+    hash_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.content

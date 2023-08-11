@@ -8,7 +8,8 @@ from .forms import BoardForm
 
 
 def main(request):
-    return render(request, "main.html")
+    hashtag = Hashtag.objects.order_by('-count')[:3]
+    return render(request, "main.html", {"hashtag":hashtag})
 
 
 def board(request):
@@ -34,7 +35,10 @@ def write(request):
                 if word[0] == '#':
                     hashtag, created = Hashtag.objects.get_or_create(content=word)
                     if not created:
-                        board.hashtags.add(hashtag)
+                        hashtag.count += 1
+                        hashtag.hash_date = timezone.datetime.now()
+                        hashtag.save()
+                    board.hashtags.add(hashtag)
             return redirect('youareright:board')
     else:
         form = BoardForm()

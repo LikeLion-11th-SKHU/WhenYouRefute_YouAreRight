@@ -1,12 +1,22 @@
+{% load make_hashtag_link %}
+
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Main</title>
 </head>
+
 <body>
 	<H1>Main 페이지입니다.</H1>
+	{% for h in hashtag %}
+	{{ h|hashtag_links|safe}}<br />
+	{{ h.hash_date }}<br />
+	{% endfor %}
+	<br />
 	<a href="{% url 'youareright:board' %}">게시글 목록</a>
 </body>
+
 </html>
