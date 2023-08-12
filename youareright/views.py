@@ -43,6 +43,26 @@ def write(request):
     else:
         form = BoardForm()
         return render(request, 'write.html', {'form':form})
+    
+def update(request, board_id):
+    board = get_object_or_404(Board, id = board_id)
+    if request.method == "POST":
+        form = BoardForm(request.POST, instance=board)
+        if form.is_valid():
+            form.save(commit=False)
+            form.pub_date = timezone.datetime.now()
+            form.save()
+            return redirect('youareright:detail', board_id=board.id)
+    else:
+        form = BoardForm(instance=board)
+        return render(request, 'detail.html', {'form':form})
+
+
+def delete(request, board_id):
+    board = get_object_or_404(Board, id = board_id)
+    board.delete()
+    return redirect('youareright:board')
+
 
 
 def create_reply(request, board_id):
