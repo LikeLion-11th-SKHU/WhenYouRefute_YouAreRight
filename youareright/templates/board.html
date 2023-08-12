@@ -17,9 +17,8 @@
 		<div class="header">
 			<h2>{{ title }}</h2>
 		</div>
-		<div style="text-align:right">
-			<a href="{% url 'youareright:write' %}">글쓰기</a>
-		</div>
+		<a href="{% url 'create' %}">글 작성하기</a>
+		<br />
 
 		<input type="radio" name="button" value="사회" id="so_r" checked>
 		<label for="so_r">사회</label>
@@ -36,48 +35,48 @@
 
 
 				<div id="SO" style="display: block;">
-					{% for data in board_list %}
+					{% for data in post %}
 						{% if data.category == 'SOCIETY' %}
-							<a href="{% url 'youareright:detail' data.id %}">제목 : {{ data.title }}</a><br>
+							<a href="{% url 'detail' data.title %}">제목 : {{ data.title }}</a><br>
 							{{ data.hashtag }}<br>
 						{% endif %}
 					{% endfor %}
 				</div>
 
 				<div id="CU" style="display: none;">
-					{% for data in board_list %}
+					{% for data in post %}
 						{% if data.category == 'CULTURE' %}
-							<a href="{% url 'youareright:detail' data.id %}">제목 : {{ data.title }}</a><br>
+							<a href="{% url 'detail' data.title %}">제목 : {{ data.title }}</a><br>
 						{% endif %}
 					{% endfor %}
 				</div>
 
 				<div id="PO" style="display: none;">
-					{% for data in board_list %}
+					{% for data in post %}
 						{% if data.category == 'POLITICS' %}
-							<a href="{% url 'youareright:detail' data.id %}">제목 : {{ data.title }}</a><br>
+							<a href="{% url 'detail' data.title %}">제목 : {{ data.title }}</a><br>
 						{% endif %}
 					{% endfor %}
 				</div>
 
 				<div id="EC" style="display: none;">
-					{% for data in board_list %}
+					{% for data in post %}
 						{% if data.category == 'ECONOMY' %}
-							<a href="{% url 'youareright:detail' data.id %}">제목 : {{ data.title }}</a><br>
+							<a href="{% url 'detail' data.title %}">제목 : {{ data.title }}</a><br>
 						{% endif %}
 					{% endfor %}
 				</div>
 
 				<div id="EN" style="display: none;">
-					{% for data in board_list %}
+					{% for data in post %}
 						{% if data.category == 'ENTERTAINMENT' %}
-							<a href="{% url 'youareright:detail' data.id %}">제목 : {{ data.title }}</a><br>
+							<a href="{% url 'detail' data.title %}">제목 : {{ data.title }}</a><br>
 						{% endif %}
 					{% endfor %}
 				</div>
 
 				<div id="FR" style="display: none;">
-					{% for data in board_list %}
+					{% for data in post %}
 						{% if data.category == 'FREE' %}
 							<a href="{% url 'youareright:detail' data.id %}">제목 : {{ data.title }}</a><br>
 						{% endif %}

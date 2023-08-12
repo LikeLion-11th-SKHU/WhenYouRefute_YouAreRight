@@ -25,7 +25,6 @@ import youareright.views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", youareright.views.main, name="main"),
-    path("youareright/", include("youareright.urls")),
+    path("", include("youareright.urls")),
     path("account/", include("account.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

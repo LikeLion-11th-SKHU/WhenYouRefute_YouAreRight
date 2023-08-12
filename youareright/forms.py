@@ -1,12 +1,8 @@
 from django import forms
-from .models import Board, Reply, Hashtag
+from .models import Post
 
-class BoardForm(forms.ModelForm):
-    class Meta:
-        model = Board
-        fields = ['category', 'title', 'content', 'author'] 
 
-class Reply(forms.ModelForm):
+class PostForm(forms.ModelForm):
     class Meta:
-        model = Reply
-        fields = ['reply', 'comment', 'rep_date'] 
+        model = Post
+        fields = ["category", "title", "user_name", "body", "image"]

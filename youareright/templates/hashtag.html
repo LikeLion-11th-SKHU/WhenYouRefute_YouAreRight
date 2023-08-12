@@ -13,7 +13,7 @@
 
   <h2>{{ hashtag.content }}를 태그한 게시글</h2>
   {% for board in boards %}
-    <a href="{% url 'youareright:detail' board.pk %}">제목 : {{ board.title }}</a>
+    <a href="{% url 'detail' board.title %}">제목 : {{ board.title }}</a>
     <hr>
   {% endfor %}
 </body>

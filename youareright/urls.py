@@ -1,12 +1,14 @@
+from django.contrib import admin
 from django.urls import path
+import youareright.views
 
-from . import views
-
-app_name = "youareright"
 urlpatterns = [
-    path("", views.board, name="board"),
-    path("<int:board_id>/", views.detail, name="detail"),
-    path("write/", views.write, name="write"),
-    path("<int:board_id>/create_reply/", views.create_reply, name="create_reply"),
-    path('<int:hashtag_pk>/hashtag/', views.hashtag, name='hashtag'),
-]
+    path("admin/", admin.site.urls),
+    path("", youareright.views.main, name="main"),
+    path("create/", youareright.views.create, name="create"),
+    path("board/", youareright.views.board, name="board"),
+    path("detail/<str:title>", youareright.views.detail, name="detail"),
+    path("update/<str:title>", youareright.views.update, name="update"),
+    path("delete/<str:title>", youareright.views.delete, name="delete"),
+    path('<int:hashtag_pk>/hashtag/', youareright.views.hashtag, name='hashtag'),
+] 

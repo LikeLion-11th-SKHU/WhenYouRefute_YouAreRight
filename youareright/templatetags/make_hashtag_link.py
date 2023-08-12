@@ -5,12 +5,12 @@ register = template.Library()
 
 @register.filter
 def hashtag_link(word):
-    content = word.content
+    content = word.body
     hashtags = word.hashtags.all()
 
     for hashtag in hashtags:
         content = content.replace(
-            hashtag.content, f'<a href="/youareright/{hashtag.pk}/hashtag/">{hashtag.content}</a> ')
+            hashtag.content, f'<a href="/{hashtag.pk}/hashtag/">{hashtag.content}</a> ')
     return content
 
 
@@ -18,5 +18,5 @@ def hashtag_link(word):
 def hashtag_links(word):
     content = word.content
     hashtags = word
-    content = content.replace(hashtags.content, f'<a href="/youareright/{hashtags.pk}/hashtag/">{hashtags.content}</a> ')
+    content = content.replace(hashtags.content, f'<a href="/{hashtags.pk}/hashtag/">{hashtags.content}</a> ')
     return content
