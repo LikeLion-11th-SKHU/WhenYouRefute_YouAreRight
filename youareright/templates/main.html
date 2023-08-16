@@ -12,7 +12,7 @@
 <body>
 	{% for h in hashtag %}
 	{{ h|hashtag_links|safe}}<br />
-	{{ h.hash_date }}<br />
+	{{ h.hash_date }} / {{ h.count }}<br />
 	{% endfor %}
 	<br />
 	<a href="{% url 'youareright:board' %}">게시글 목록</a>

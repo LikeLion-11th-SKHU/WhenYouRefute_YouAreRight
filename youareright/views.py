@@ -4,16 +4,24 @@ from .forms import PostForm
 from django.utils import timezone
 from .models import Post, Hashtag
 from .forms import PostForm
+from django.db.models import Q
 
 # Create your views here.
 
-
 def main(request):
-    hashtag = Hashtag.objects.order_by('-count')[:3]
+    current_week = timezone.now().isocalendar()[1]
+
+    # rommmu :: Hashtag filtering
+    for hashtags in Hashtag.objects.all():
+        if current_week != hashtags.hash_date.isocalendar()[1]:
+            hashtags.count = 0
+            hashtags.save()
+    
+    hashtag = Hashtag.objects.filter(count__gt = 0).order_by('-count')
     return render(request, "main.html", {"hashtag":hashtag})
 
 
-def create(request):
+def create(request):    
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
@@ -25,10 +33,11 @@ def create(request):
             for word in form.body.split():
                 if word[0] == '#':
                     hashtag, created = Hashtag.objects.get_or_create(content=word)
+                    # rommmu :: hashtag 가 작성될 때 hash_date에 현재를 저장
+                    hashtag.hash_date = timezone.now()
                     if not created:
                         hashtag.count += 1
-                        hashtag.hash_date = timezone.datetime.now()
-                        hashtag.save()
+                    hashtag.save()
                     form.hashtags.add(hashtag)
             return redirect("board")
     else:
