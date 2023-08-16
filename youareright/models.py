@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 # Create your models here.
 
 
@@ -34,7 +34,7 @@ class Post(models.Model):
 class Hashtag(models.Model):
     content = models.TextField(unique=True)
     count = models.PositiveBigIntegerField(default=1)
-    hash_date = models.DateTimeField(auto_now=True)
+    hash_date = models.DateTimeField(default=timezone.now())
 
     def __str__(self):
         return self.content

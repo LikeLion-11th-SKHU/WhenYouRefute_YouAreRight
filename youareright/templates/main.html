@@ -13,7 +13,7 @@
 	<H1>Main 페이지입니다.</H1>
 	{% for h in hashtag %}
 	{{ h|hashtag_links|safe}}<br />
-	{{ h.hash_date }}<br />
+	{{ h.hash_date }} / {{ h.count }}<br />
 	{% endfor %}
 	<br />
 	<a href="{% url 'board' %}">게시글 목록</a>
