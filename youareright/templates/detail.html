@@ -14,7 +14,13 @@
 {% endif %}
 
 
+
+<input type="submit" value="댓글달기">
+{% for comment in post.comments.all %}
+<p>{{comment.text}}</p>
+{% endfor %}
+댓글달기
 <br>
-<a href="{% url 'update' post.title %}">글 수정하기</a>
+<a href="{% url 'update' post.id %}">글 수정하기</a>
 <br>
-<a href="{% url 'delete' post.title %}">글 삭제하기</a>
+<a href="{% url 'delete' post.id %}">글 삭제하기</a>

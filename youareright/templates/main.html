@@ -10,13 +10,21 @@
 </head>
 
 <body>
-	<H1>Main 페이지입니다.</H1>
 	{% for h in hashtag %}
 	{{ h|hashtag_links|safe}}<br />
 	{{ h.hash_date }}<br />
 	{% endfor %}
 	<br />
-	<a href="{% url 'board' %}">게시글 목록</a>
+	<a href="{% url 'youareright:board' %}">게시글 목록</a>
+	{% if user.is_active %}
+	{{ user.username }}님 환영합니다. <a href="{% url 'logout'%}">로그아웃</a>
+	<a href="">마이페이지</a>
+	{% else %}
+	<a href="{% url 'login'%}">로그인</a>
+	<a href="{% url 'signup'%}">회원가입</a>
+	{% endif %}
+	<H1>Main 페이지입니다.</H1>
+	<hr>
 </body>
 
 </html>

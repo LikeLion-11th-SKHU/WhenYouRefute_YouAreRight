@@ -37,7 +37,7 @@
 				<div id="SO" style="display: block;">
 					{% for data in post %}
 						{% if data.category == 'SOCIETY' %}
-							<a href="{% url 'detail' data.title %}">제목 : {{ data.title }}</a><br>
+							<a href="{% url 'detail' data.id %}">제목 : {{ data.id }}</a><br>
 							{{ data.hashtag }}<br>
 						{% endif %}
 					{% endfor %}
@@ -46,7 +46,7 @@
 				<div id="CU" style="display: none;">
 					{% for data in post %}
 						{% if data.category == 'CULTURE' %}
-							<a href="{% url 'detail' data.title %}">제목 : {{ data.title }}</a><br>
+							<a href="{% url 'detail' data.id %}">제목 : {{ data.id }}</a><br>
 						{% endif %}
 					{% endfor %}
 				</div>
@@ -54,7 +54,7 @@
 				<div id="PO" style="display: none;">
 					{% for data in post %}
 						{% if data.category == 'POLITICS' %}
-							<a href="{% url 'detail' data.title %}">제목 : {{ data.title }}</a><br>
+							<a href="{% url 'detail' data.id %}">제목 : {{ data.id }}</a><br>
 						{% endif %}
 					{% endfor %}
 				</div>
@@ -62,7 +62,7 @@
 				<div id="EC" style="display: none;">
 					{% for data in post %}
 						{% if data.category == 'ECONOMY' %}
-							<a href="{% url 'detail' data.title %}">제목 : {{ data.title }}</a><br>
+							<a href="{% url 'detail' data.id %}">제목 : {{ data.id }}</a><br>
 						{% endif %}
 					{% endfor %}
 				</div>
@@ -70,7 +70,7 @@
 				<div id="EN" style="display: none;">
 					{% for data in post %}
 						{% if data.category == 'ENTERTAINMENT' %}
-							<a href="{% url 'detail' data.title %}">제목 : {{ data.title }}</a><br>
+							<a href="{% url 'detail' data.id %}">제목 : {{ data.id }}</a><br>
 						{% endif %}
 					{% endfor %}
 				</div>
@@ -78,7 +78,7 @@
 				<div id="FR" style="display: none;">
 					{% for data in post %}
 						{% if data.category == 'FREE' %}
-							<a href="{% url 'youareright:detail' data.id %}">제목 : {{ data.title }}</a><br>
+							<a href="{% url 'detail' data.id %}">제목 : {{ data.id }}</a><br>
 						{% endif %}
 					{% endfor %}
 				</div>

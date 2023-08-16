@@ -41,14 +41,14 @@ def board(request):
 
 
 def detail(request, title):
-    post = get_object_or_404(Post, title=title)
+    post = get_object_or_404(Post, id=id)
     post.count += 1
     post.save()
     return render(request, "detail.html", {"post": post})
 
 
 def update(request, title):
-    post = get_object_or_404(Post, title=title)
+    post = get_object_or_404(Post, id=id)
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
@@ -62,7 +62,7 @@ def update(request, title):
 
 
 def delete(request, title):
-    post = get_object_or_404(Post, title=title)
+    post = get_object_or_404(Post, id=id)
     post.delete()
     return redirect("board")
 
