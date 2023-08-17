@@ -15,7 +15,7 @@
 	{{ h.hash_date }} / {{ h.count }}<br />
 	{% endfor %}
 	<br />
-	<a href="{% url 'youareright:board' %}">게시글 목록</a>
+	<a href="{% url 'board' %}">게시글 목록</a>
 	{% if user.is_active %}
 	{{ user.username }}님 환영합니다. <a href="{% url 'logout'%}">로그아웃</a>
 	<a href="">마이페이지</a>
