@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/youareright/static/css/board.css">
+	<title>Board</title>
+</head>
+
+<body>
+	<div class="content">
+		{% for alias, category in category_list %}
+		<li><a href="/{{ alias }}/">{{ category }}</a></li>
+		{% endfor %}
+		<div class="header">
+			<h2>{{ title }}</h2>
+		</div>
+		<a href="{% url 'create' %}">글 작성하기</a>
+		<br />
+
+		<input type="radio" name="button" value="사회" id="so_r" checked>
+		<label for="so_r">사회</label>
+		<input type="radio" name="button" value="문화" id="cu_r">
+		<label for="cu_r">문화</label>
+		<input type="radio" name="button" value="정치" id="po_r">
+		<label for="po_r">정치</label>
+		<input type="radio" name="button" value="경제" id="ec_r">
+		<label for="ec_r">경제</label>
+		<input type="radio" name="button" value="연예" id="en_r">
+		<label for="en_r">연예</label>
+		<input type="radio" name="button" value="자유" id="fr_r">
+		<label for="fr_r">자유</label>
+
+
+				<div id="SO" style="display: block;">
+					{% for data in post %}
+						{% if data.category == 'SOCIETY' %}
+							<a href="{% url 'detail' data.id %}">제목 : {{ data.id }}</a><br>
+							{{ data.hashtag }}<br>
+						{% endif %}
+					{% endfor %}
+				</div>
+
+				<div id="CU" style="display: none;">
+					{% for data in post %}
+						{% if data.category == 'CULTURE' %}
+							<a href="{% url 'detail' data.id %}">제목 : {{ data.id }}</a><br>
+						{% endif %}
+					{% endfor %}
+				</div>
+
+				<div id="PO" style="display: none;">
+					{% for data in post %}
+						{% if data.category == 'POLITICS' %}
+							<a href="{% url 'detail' data.id %}">제목 : {{ data.id }}</a><br>
+						{% endif %}
+					{% endfor %}
+				</div>
+
+				<div id="EC" style="display: none;">
+					{% for data in post %}
+						{% if data.category == 'ECONOMY' %}
+							<a href="{% url 'detail' data.id %}">제목 : {{ data.id }}</a><br>
+						{% endif %}
+					{% endfor %}
+				</div>
+
+				<div id="EN" style="display: none;">
+					{% for data in post %}
+						{% if data.category == 'ENTERTAINMENT' %}
+							<a href="{% url 'detail' data.id %}">제목 : {{ data.id }}</a><br>
+						{% endif %}
+					{% endfor %}
+				</div>
+
+				<div id="FR" style="display: none;">
+					{% for data in post %}
+						{% if data.category == 'FREE' %}
+							<a href="{% url 'detail' data.id %}">제목 : {{ data.id }}</a><br>
+						{% endif %}
+					{% endfor %}
+				</div>
+
+
+	</div>
+	<script src="{% static 'js/category.js' %}"></script>
+</body>
+
+</html>
