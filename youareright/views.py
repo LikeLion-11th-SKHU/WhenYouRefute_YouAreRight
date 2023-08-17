@@ -17,7 +17,7 @@ def main(request):
             hashtags.count = 0
             hashtags.save()
     
-    hashtag = Hashtag.objects.filter(count__gt = 0).order_by('-count')
+    hashtag = Hashtag.objects.filter(count__gt = 0).order_by('-count')[:6]
     return render(request, "main.html", {"hashtag":hashtag})
 
 
@@ -49,14 +49,14 @@ def board(request):
     return render(request, "board.html", {"post": post})
 
 
-def detail(request, title):
+def detail(request, id):
     post = get_object_or_404(Post, id=id)
     post.count += 1
     post.save()
     return render(request, "detail.html", {"post": post})
 
 
-def update(request, title):
+def update(request, id):
     post = get_object_or_404(Post, id=id)
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)
@@ -70,7 +70,7 @@ def update(request, title):
         return render(request, "update.html", {"form": form})
 
 
-def delete(request, title):
+def delete(request, id):
     post = get_object_or_404(Post, id=id)
     post.delete()
     return redirect("board")

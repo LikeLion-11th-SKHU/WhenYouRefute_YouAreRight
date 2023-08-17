@@ -23,6 +23,7 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	font-family: 'Pretendard-Regular';
 }
 
 article, aside, details, figcaption, figure, 
@@ -67,8 +68,153 @@ table {
 
 /* 학교안심 우주 */
 @font-face {
-	font-family: 'HakgyoansimWoojuR';
-	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');
-	font-weight: normal;
+	font-family: 'Pretendard-Regular';
+	src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+	font-weight: 400;
 	font-style: normal;
+}
+
+
+
+body {
+	background-color: #f8f7f5;
+	margin: 0;
+	overflow-x: hidden;
+}
+
+.body-container {
+	width: 1440px;
+	height: 100%;
+	margin-top: 0;
+	margin-left: auto;
+  margin-right: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.inner-container {
+	margin-top: 15vh;
+	width: 100%;
+}
+
+.navbar_m {
+	display: none;
+}
+
+.navbar_p {
+	font-family: 'HakgyoansimWoojuR';
+	/* 스크롤 내려도 navbar상단 고정 */
+	position: fixed;
+	top: 0;
+	/* 스크롤 내려도 navbar상단 고정 */
+	padding-top: 3vh;
+	margin-top: 0;
+	margin-left: auto;
+  margin-right: auto;
+	width: 100%;
+	height: 7vh;
+	background-color: #f8f7f5ec;
+	display: flex;
+	z-index: 1000;
+}
+
+.nav-content {
+	font-family: 'HakgyoansimWoojuR';
+	margin-left: auto;
+  margin-right: auto;
+	width: 1360px;
+	height: 7vh;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+@media (max-width: 1440px){
+
+	.body-container {
+		width: 1000px;
+	}
+
+	.nav-content {
+		width: 1000px;
+	}
+	
+}
+
+@media (max-width: 1065px){
+
+	.body-container {
+		width: calc(100% - 6rem);
+	}
+
+	.nav-content {
+		width: calc(100% - 6rem);
+	}
+}
+
+
+.nav_logo {
+	font-family: 'omyu_pretty';
+	font-size: 2.2rem;
+	cursor: pointer;
+	color: black;
+	text-decoration: none;
+}
+
+.nav_text {
+	display: flex;
+	align-items: center;
+}
+
+.nav_menu_p {
+	display: flex;
+	align-items: center;
+}
+
+
+#nav_part_p {
+	margin-left: 1vw;
+	border-radius: 20% / 40%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+} 
+
+.nav_li_p {
+	color: black;
+	text-decoration: none;
+	font-size: 1.2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1vh 1vw;
+} /* 왜인지 부모요소에서 적용하면 안 먹어서... */
+
+#nav_part_p:hover {
+	background-color: #f4f9d9;
+	color: #4c903a;
+}
+
+/* 돋보기 */
+
+.search_li {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 2rem;
+	right: 2rem;
+}
+
+#search_item {
+	width: 1rem;
+	right: 1rem;
+	margin-right: 2vw;
+}
+
+#search_item:hover {
+	transition: all 0.2s ease;
+	width: 1.3rem;
+	right: 1.3rem;
 }

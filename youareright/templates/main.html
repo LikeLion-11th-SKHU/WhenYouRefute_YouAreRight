@@ -1,30 +1,71 @@
+{% extends 'base.html' %}
 {% load make_hashtag_link %}
+{% load static %}
 
-<!DOCTYPE html>
-<html lang="ko">
+{% block content %}
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Main</title>
-</head>
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+{% endblock %}
+<div class="slide-frame">
+	<div class="slide" id="leo_SL">
+		<div class="slide-container">
+			<ul class="slides-box">
 
-<body>
-	{% for h in hashtag %}
-	{{ h|hashtag_links|safe}}<br />
-	{{ h.hash_date }} / {{ h.count }}<br />
-	{% endfor %}
-	<br />
-	<a href="{% url 'youareright:board' %}">게시글 목록</a>
-	{% if user.is_active %}
-	{{ user.username }}님 환영합니다. <a href="{% url 'logout'%}">로그아웃</a>
-	<a href="">마이페이지</a>
-	{% else %}
-	<a href="{% url 'login'%}">로그인</a>
-	<a href="{% url 'signup'%}">회원가입</a>
-	{% endif %}
-	<H1>Main 페이지입니다.</H1>
+				<li class="slide-li">
+					<img class="slide-img" src="{% static 'img/slide1.png' %}">
+				</li>
+				<li class="slide-li">
+					<img class="slide-img" src="{% static 'img/slide2.png' %}">
+				</li>
+				<li class="slide-li">
+					<img class="slide-img" src="{% static 'img/slide3.png' %}">
+				</li>
+			</ul>
+
+			<p class="controller">
+				<span class="prev"></span>
+				<span class="next"></span>
+			</p>
+
+			<ul class="slide_pagination"></ul>
+
+		</div>
+	</div>
+</div>
+</div>
+<script src="{% static 'js/main.js' %}"></script> 
+
+<div class="bottom-container">
+	<div class="popular-hash-container">
+		<div class="popular-title">
+			<h2>&#9654;</h2><h1>핫 이슈</h1>
+			<p>금주 가장 많이 언급된 키워드를 보여줍니다.</p>
+		</div>
+
+		<div class="hashtag-container">
+			{% for h in hashtag %}
+				{{ h|hashtag_links|safe }}
+			<br>
+			<!--{{ h.hash_date }} / {{ h.count }}<br />-->
+			{% endfor %}
+		</div>
+	</div>
+
 	<hr>
-</body>
 
-</html>
+	<div class="popular-board-container">
+		<div class="popular-title">
+			<h2>&#9654;</h2><h1>이 달의 이슈</h1>
+			<p>이달 가장 많은 관심을 받은 게시글을 순위 별로 보여줍니다.</p>
+		</div>
+
+		<div class="board-container">
+
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}

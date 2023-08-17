@@ -10,7 +10,7 @@ def hashtag_link(word):
 
     for hashtag in hashtags:
         content = content.replace(
-            hashtag.content, f'<a href="/{hashtag.pk}/hashtag/">{hashtag.content}</a> ')
+            hashtag.content, f'<a style="text-decoration: none; color: #434343;" href="/{hashtag.pk}/hashtag/">{hashtag.content}</a> ')
     return content
 
 
@@ -18,5 +18,5 @@ def hashtag_link(word):
 def hashtag_links(word):
     content = word.content
     hashtags = word
-    content = content.replace(hashtags.content, f'<a href="/{hashtags.pk}/hashtag/">{hashtags.content}</a> ')
+    content = content.replace(hashtags.content, f'<a class="hashtag-link" href="/{hashtags.pk}/hashtag/"><div class="popular-hashtag">{hashtags.content}</div></a> ')
     return content
