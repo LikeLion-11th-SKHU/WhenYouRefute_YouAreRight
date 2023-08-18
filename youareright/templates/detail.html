@@ -45,24 +45,22 @@
     </div>
 </div>
 
-{% endif %}
-
+    {% endif %}
 
 <div class="submit-container">
-    <div class="submit-background">
-        <br><input class="submit" type="submit" value="댓글달기">
-        {% for comment in post.comments.all %}
-        <p>{{comment.text}}</p>
-    </div>
+    <form method="POST">
+        {% csrf_token %}
+        <textarea class="submit-background" name="text" placeholder="댓글을 입력하세요"></textarea>
+        <button type="submit">댓글 작성</button>
+    </form>
 </div>
 
-{% endfor %}
-
-
-<br>
-<a href="{% url 'update' post.id %}">글 수정하기</a>
-<br>
-<a href="{% url 'delete' post.id %}">글 삭제하기</a>
+    {% for comment in post.comments.all %}
+    <p>{{comment.text}}</p>
+    {% endfor %}
+    <br>
+    <a href="{% url 'update' post.id %}">글 수정하기</a>
+    <br>
+    <a href="{% url 'delete' post.id %}">글 삭제하기</a>
 
 {% endblock %}
-

@@ -29,16 +29,19 @@ position: absolute;
 width: 1300x;
 height: 100px;
 left: 96px;
+top: 1000px;
 }
 
-.submit-background {
+.submit-background::placeholder {
 position: absolute;
 width: 1300px;
 height: 100px;
 left: 96px;
+top: 1000px;
 
 background: #FFFFFF;
 border-radius: 30px;
+
 }
 
 .submit-profile {
@@ -49,3 +52,4 @@ left: 135px;
 top: 1692px;
 border-radius: 30px;
 }
+

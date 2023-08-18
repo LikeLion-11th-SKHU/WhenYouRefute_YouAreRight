@@ -6,8 +6,9 @@
 
 {% block link %}
 <link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/board.css' %}">
 {% endblock %}
-<div class="slide-frame">
+<div class="slide-frame" style="margin-bottom: 10vh;">
 	<div class="slide" id="leo_SL">
 		<div class="slide-container">
 			<ul class="slides-box">
@@ -54,16 +55,34 @@
 
 	<hr>
 
-	<div class="popular-board-container">
+	<div class="popular-board-container" style="margin-bottom: 0;">
 		<div class="popular-title">
 			<h2>&#9654;</h2><h1>이 달의 이슈</h1>
 			<p>이달 가장 많은 관심을 받은 게시글을 순위 별로 보여줍니다.</p>
 		</div>
 
 		<div class="board-container">
-
+			{% for post in post %}
+			<a class="border-container" href="{% url 'detail' post.id %}">
+				<div class="board-content">
+					<div class="board-title" id="font">
+						{{ post.title }}
+					</div>
+					{% if post.image %}
+					<div class="board-image">
+						<img src="{{data.image.url}}" alt="post_image">
+					</div>
+					{% endif %}
+					<div class="board-body">
+						{{ post.body|truncatechars:40 }}
+					</div>
+				</div>
+			</a>
+			{% endfor %}
 		</div>
 	</div>
+
+	<hr style="margin-bottom: 20vh;">
 </div>
 
 
