@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load make_hashtag_link %}
+{% load static %}
+
+
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/board.css' %}">
+{% endblock %}
+
+{% for alias, category in category_list %}
+<li><a href="/{{ alias }}/">{{ category }}</a></li>
+{% endfor %}
+<div class="header">
+    <h2>{{ title }}</h2>
+</div>
