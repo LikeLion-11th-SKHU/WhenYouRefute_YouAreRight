@@ -16,9 +16,11 @@ def main(request):
         if current_week != hashtags.hash_date.isocalendar()[1]:
             hashtags.count = 0
             hashtags.save()
-    
+    post = Post.objects.all().order_by('-likes')[:3]
     hashtag = Hashtag.objects.filter(count__gt = 0).order_by('-count')[:6]
-    return render(request, "main.html", {"hashtag":hashtag})
+    return render(request, "main.html", {"hashtag":hashtag, "post":post})
+
+
 
 
 def create(request):    
@@ -83,11 +85,11 @@ def hashtag(request, hashtag_pk):
     return render(request, 'hashtag.html', {'hashtag': hashtag, 'boards': boards})
 
    # 좋아요 함수
-def like(request, id):
+def like(request, pk):
     if not request.user.is_active:
         return HttpResponse('로그인이 필요합니다.')
     
-    post = get_object_or_404(Post, id=id)
+    post = get_object_or_404(Post, pk=pk)
     user = request.user
 
     if post.likes.filter(id=user.id).exists():
@@ -95,4 +97,4 @@ def like(request, id):
     else:
         post.likes.add(user)
 
-    return redirect('detail/' +str(id))
+    return redirect('detail', pk)

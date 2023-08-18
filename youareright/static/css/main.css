@@ -212,3 +212,9 @@ hr {
 	margin-bottom: 20vh;
 	width: 100%;
 }
+
+.board-container {
+	margin-top: 6vh;
+	display: flex;
+	justify-content: start;
+}

@@ -11,5 +11,5 @@ urlpatterns = [
     path("update/<int:id>", youareright.views.update, name="update"),
     path("delete/<int:id>", youareright.views.delete, name="delete"),
     path('<int:hashtag_pk>/hashtag/', youareright.views.hashtag, name='hashtag'),
-    path('like/<str:id>/', youareright.views.like, name='like'),
+    path('like/<str:pk>', youareright.views.like, name='like'),
 ] 

@@ -11,3 +11,26 @@
     </table>
     <button type="submit">작성</button>
 </form>
+
+<h1>아래처럼 풀어서</h1>
+
+<form method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+	<div>
+		{{ form.category }}
+	</div>
+	<div>
+		제목 : {{ form.title }}
+	</div>
+	<div>
+		작성자 : {{ form.user_name }}
+	</div>
+	<div>
+		{{ form.body }}
+	</div>
+	<div>
+		{{ form.image }}
+	</div>
+
+	<button type="submit">작성</button>
+</form>
