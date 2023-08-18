@@ -102,5 +102,15 @@ def like(request, pk):
 
 
 def search(request):
-    if request.method == "POST":
-        search = request.POST.get("search")
+    search_item = request.GET.get("search_item")
+    if search_item:
+        post_list = (
+            Post.objects.all()
+            .filter(
+                Q(title__icontains=search_item)  # 제목 검색
+                | Q(body__icontains=search_item)  # 내용 검색
+                | Q(user_name__icontains=search_item)  # 질문 글쓴이 검색  # 답변 글쓴이 검색
+            )
+            .distinct()
+        )
+        return render(request, "search.html", {"post_list": post_list})

@@ -24,13 +24,13 @@
 				<div class="nav_text">
 					<ul class="nav_menu_p">
 						<!-- 검색창 -->
-						<form method="POST">
+						<form method="GET" action="{% url 'search' %}">
 							{% csrf_token %}
-							<input type="text" name="search" placeholder="검색어를 입력하세요.">
 							<li class="search_li">
-								<a href="{% url 'search' %}">
+								<input type="text" name="search_item">
+								<button type="submit">
 									<img id="search_item" src="{% static 'img/search.svg' %}" alt="돋보기">
-								</a>
+								</button>
 							</li>
 						</form>
 						<li><a class="nav_li_p" id="nav_part_p" href="{% url 'board' %}">게시글</a></li>
