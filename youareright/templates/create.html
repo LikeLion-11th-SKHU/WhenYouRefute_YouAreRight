@@ -1,13 +1,177 @@
-<title>Create</title>
+{% extends 'base.html' %}
+{% load make_hashtag_link %}
+{% load static %}
 
+{% block content %}
 
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/create.css' %}">
+{% endblock %}
 
-<h1>Create Page</h1>
-<hr>
+<div class="popular-title">
+	<h2>&#9654;</h2>
+	<h1>토론 작성하기</h1>
+	<p>토론을 작성하고 게시할 수 있습니다.</p>
+</div>
+
 <form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <button type="submit">작성</button>
+	{% csrf_token %}
+	<div class="form-top">
+		<input class="title" type="text" name="title" placeholder="제목을 입력해주세요">
+		<div class="form-top-right">
+			<select class="select" name="category">
+				<option value="SOCIETY">사회</option>
+				<option value="CULTURE">문화</option>
+				<option value="POLITICS">정치</option>
+				<option value="ECONOMY">경제</option>
+				<option value="ENTERTAINMENT">연예</option>
+			</select>
+		<button class="submit-button" type="submit">작성</button>
+		</div>
+	</div>
+
+	<div>
+		{{ form.body }}
+	</div>
+	<div>
+		{{ form.image }}
+	</div>
 </form>
+
+{% endblock %}
+
+<div class="board">
+	<div class="board-frame" id="SO" style="display: flex;">
+		{% for data in post %}
+		{% if data.category == 'SOCIETY' %}
+		<a class="border-container" href="{% url 'detail' data.id %}">
+			<div class="board-content">
+				<div class="board-title" id="font">
+					{{ data.title }}
+				</div>
+				{% if data.image %}
+				<div class="board-image">
+					<img src="{{data.image.url}}" alt="post_image">
+				</div>
+				{% endif %}
+				<div class="board-body">
+					{{ data.body|truncatechars:40 }}
+				</div>
+			</div>
+		</a>
+		{% endif %}
+		{% endfor %}
+	</div>
+
+	<div class="board-frame" id="CU" style="display: flex;">
+		{% for data in post %}
+		{% if data.category == 'CULTURE' %}
+		<a class="border-container" href="{% url 'detail' data.id %}">
+			<div class="board-content">
+				<div class="board-title" id="font">
+					{{ data.title }}
+				</div>
+				{% if data.image %}
+				<div class="board-image">
+					<img src="{{data.image.url}}" alt="post_image">
+				</div>
+				{% endif %}
+				<div class="board-body">
+					{{ data.body|truncatechars:40 }}
+				</div>
+			</div>
+		</a>
+		{% endif %}
+		{% endfor %}
+	</div>
+
+	<div class="board-frame" id="PO" style="display: flex;">
+		{% for data in post %}
+		{% if data.category == 'POLITICS' %}
+		<a class="border-container" href="{% url 'detail' data.id %}">
+			<div class="board-content">
+				<div class="board-title" id="font">
+					{{ data.title }}
+				</div>
+				{% if data.image %}
+				<div class="board-image">
+					<img src="{{data.image.url}}" alt="post_image">
+				</div>
+				{% endif %}
+				<div class="board-body">
+					{{ data.body|truncatechars:40 }}
+				</div>
+			</div>
+		</a>
+		{% endif %}
+		{% endfor %}
+	</div>
+
+	<div class="board-frame" id="EC" style="display: flex;">
+		{% for data in post %}
+		{% if data.category == 'ECONOMY' %}
+		<a class="border-container" href="{% url 'detail' data.id %}">
+			<div class="board-content">
+				<div class="board-title" id="font">
+					{{ data.title }}
+				</div>
+				{% if data.image %}
+				<div class="board-image">
+					<img src="{{data.image.url}}" alt="post_image">
+				</div>
+				{% endif %}
+				<div class="board-body">
+					{{ data.body|truncatechars:40 }}
+				</div>
+			</div>
+		</a>
+		{% endif %}
+		{% endfor %}
+	</div>
+
+	<div class="board-frame" id="EN" style="display: flex;">
+		{% for data in post %}
+		{% if data.category == 'ENTERTAINMENT' %}
+		<a class="border-container" href="{% url 'detail' data.id %}">
+			<div class="board-content">
+				<div class="board-title" id="font">
+					{{ data.title }}
+				</div>
+				{% if data.image %}
+				<div class="board-image">
+					<img src="{{data.image.url}}" alt="post_image">
+				</div>
+				{% endif %}
+				<div class="board-body">
+					{{ data.body|truncatechars:40 }}
+				</div>
+			</div>
+		</a>
+		{% endif %}
+		{% endfor %}
+	</div>
+
+	<div class="board-frame" id="FR" style="display: flex;">
+		{% for data in post %}
+		{% if data.category == 'FREE' %}
+		<a class="border-container" href="{% url 'detail' data.id %}">
+			<div class="board-content">
+				<div class="board-title" id="font">
+					{{ data.title }}
+				</div>
+				{% if data.image %}
+				<div class="board-image">
+					<img src="{{data.image.url}}" alt="post_image">
+				</div>
+				{% endif %}
+				<div class="board-body">
+					{{ data.body|truncatechars:40 }}
+				</div>
+			</div>
+		</a>
+		{% endif %}
+		{% endfor %}
+	</div>
+
+
+</div>

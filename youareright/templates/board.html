@@ -58,75 +58,140 @@
 
 
 	<div class="board">
-		<div class="board-frame" id="SO" style="display: flex;">
-			{% for data in post %}
-			{% if data.category == 'SOCIETY' %}
-			<a class="border-container" href="{% url 'detail' data.id %}">
-				<div class="board-content">
-					<div class="board-title" id="font">
-						{{ data.title }}
-					</div>
-					{% if data.image %}
-					<div class="board-image">
-						<img src="{{data.image.url}}" alt="post_image">
-					</div>
-					{% endif %}
-					<div class="board-body">
-						{{ data.body|truncatechars:40 }}
-					</div>
-				</div>
-			</a>
-			{% endif %}
-			{% endfor %}
+		<div class="board-frame" id="SO" style="display: none;">
+		   {% for data in post %}
+		   {% if data.category == 'SOCIETY' %}
+		   <a class="border-container" href="{% url 'detail' data.id %}">
+			  <div class="board-content">
+				 <div class="board-title" id="font">
+					{{ data.title }}
+				 </div>
+				 {% if data.image %}
+				 <div class="board-image">
+					<img src="{{data.image.url}}" alt="post_image">
+				 </div>
+				 {% endif %}
+				 <div class="board-body">
+					{{ data.body|truncatechars:40 }}
+				 </div>
+			  </div>
+		   </a>
+		   {% endif %}
+		   {% endfor %}
 		</div>
-
-		<div id="CU" style="display: none;">
-			{% for data in post %}
-			{% if data.category == 'CULTURE' %}
-			<a href="{% url 'detail' data.id %}">제목 : {{ data.title }}</a><br>
-			{{ data.body|truncatechars:40 }}
-			{% endif %}
-			{% endfor %}
+  
+		<div class="board-frame" id="CU" style="display: none;">
+		   {% for data in post %}
+		   {% if data.category == 'CULTURE' %}
+		   <a class="border-container" href="{% url 'detail' data.id %}">
+			  <div class="board-content">
+				 <div class="board-title" id="font">
+					{{ data.title }}
+				 </div>
+				 {% if data.image %}
+				 <div class="board-image">
+					<img src="{{data.image.url}}" alt="post_image">
+				 </div>
+				 {% endif %}
+				 <div class="board-body">
+					{{ data.body|truncatechars:40 }}
+				 </div>
+			  </div>
+		   </a>
+		   {% endif %}
+		   {% endfor %}
 		</div>
-
-		<div id="PO" style="display: none;">
-			{% for data in post %}
-			{% if data.category == 'POLITICS' %}
-			<a href="{% url 'detail' data.id %}">제목 : {{ data.title }}</a><br>
-			{{ data.body|truncatechars:40 }}
-			{% endif %}
-			{% endfor %}
+  
+		<div class="board-frame" id="PO" style="display: none;">
+		   {% for data in post %}
+		   {% if data.category == 'POLITICS' %}
+		   <a class="border-container" href="{% url 'detail' data.id %}">
+			  <div class="board-content">
+				 <div class="board-title" id="font">
+					{{ data.title }}
+				 </div>
+				 {% if data.image %}
+				 <div class="board-image">
+					<img src="{{data.image.url}}" alt="post_image">
+				 </div>
+				 {% endif %}
+				 <div class="board-body">
+					{{ data.body|truncatechars:40 }}
+				 </div>
+			  </div>
+		   </a>
+		   {% endif %}
+		   {% endfor %}
 		</div>
-
-		<div id="EC" style="display: none;">
-			{% for data in post %}
-			{% if data.category == 'ECONOMY' %}
-			<a href="{% url 'detail' data.id %}">제목 : {{ data.title }}</a><br>
-			{{ data.body|truncatechars:40 }}
-			{% endif %}
-			{% endfor %}
+  
+		<div class="board-frame" id="EC" style="display: none;">
+		   {% for data in post %}
+		   {% if data.category == 'ECONOMY' %}
+		   <a class="border-container" href="{% url 'detail' data.id %}">
+			  <div class="board-content">
+				 <div class="board-title" id="font">
+					{{ data.title }}
+				 </div>
+				 {% if data.image %}
+				 <div class="board-image">
+					<img src="{{data.image.url}}" alt="post_image">
+				 </div>
+				 {% endif %}
+				 <div class="board-body">
+					{{ data.body|truncatechars:40 }}
+				 </div>
+			  </div>
+		   </a>
+		   {% endif %}
+		   {% endfor %}
 		</div>
-
-		<div id="EN" style="display: none;">
-			{% for data in post %}
-			{% if data.category == 'ENTERTAINMENT' %}
-			<a href="{% url 'detail' data.id %}">제목 : {{ data.title }}</a><br>
-			{{ data.body|truncatechars:40 }}
-			{% endif %}
-			{% endfor %}
+  
+		<div class="board-frame" id="EN" style="display: none;">
+		   {% for data in post %}
+		   {% if data.category == 'ENTERTAINMENT' %}
+		   <a class="border-container" href="{% url 'detail' data.id %}">
+			  <div class="board-content">
+				 <div class="board-title" id="font">
+					{{ data.title }}
+				 </div>
+				 {% if data.image %}
+				 <div class="board-image">
+					<img src="{{data.image.url}}" alt="post_image">
+				 </div>
+				 {% endif %}
+				 <div class="board-body">
+					{{ data.body|truncatechars:40 }}
+				 </div>
+			  </div>
+		   </a>
+		   {% endif %}
+		   {% endfor %}
 		</div>
-
-		<div id="FR" style="display: none;">
-			{% for data in post %}
-			{% if data.category == 'FREE' %}
-			<a href="{% url 'detail' data.id %}">제목 : {{ data.title }}</a><br>
-			{{ data.body|truncatechars:40 }}
-			{% endif %}
-			{% endfor %}
+  
+		<div class="board-frame" id="FR" style="display: none;">
+		   {% for data in post %}
+		   {% if data.category == 'FREE' %}
+		   <a class="border-container" href="{% url 'detail' data.id %}">
+			  <div class="board-content">
+				 <div class="board-title" id="font">
+					{{ data.title }}
+				 </div>
+				 {% if data.image %}
+				 <div class="board-image">
+					<img src="{{data.image.url}}" alt="post_image">
+				 </div>
+				 {% endif %}
+				 <div class="board-body">
+					{{ data.body|truncatechars:40 }}
+				 </div>
+			  </div>
+		   </a>
+		   {% endif %}
+		   {% endfor %}
 		</div>
-
-
-	</div>
+  
+  
+	 </div>
 
 
 
