@@ -10,6 +10,7 @@ urlpatterns = [
     path("detail/<int:id>", youareright.views.detail, name="detail"),
     path("update/<int:id>", youareright.views.update, name="update"),
     path("delete/<int:id>", youareright.views.delete, name="delete"),
-    path('<int:hashtag_pk>/hashtag/', youareright.views.hashtag, name='hashtag'),
-    path('like/<str:pk>', youareright.views.like, name='like'),
-] 
+    path("<int:hashtag_pk>/hashtag/", youareright.views.hashtag, name="hashtag"),
+    path("like/<str:pk>", youareright.views.like, name="like"),
+    path("search/", youareright.views.search, name="search"),
+]

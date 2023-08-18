@@ -45,7 +45,7 @@
     </div>
 </div>
 
-    {% endif %}
+{% endif %}
 
 <div class="submit-container">
     <form method="POST">
@@ -55,12 +55,10 @@
     </form>
 </div>
 
-    {% for comment in post.comments.all %}
-    <p>{{comment.text}}</p>
-    {% endfor %}
-    <br>
-    <a href="{% url 'update' post.id %}">글 수정하기</a>
-    <br>
-    <a href="{% url 'delete' post.id %}">글 삭제하기</a>
-
-{% endblock %}
+{% for comment in post.comments.all %}
+<p>{{comment.text}}</p>
+{% endfor %}
+<br>
+<a href="{% url 'update' post.id %}">글 수정하기</a>
+<br>
+<a href="{% url 'delete' post.id %}">글 삭제하기</a>

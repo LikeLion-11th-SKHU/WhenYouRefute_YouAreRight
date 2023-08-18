@@ -8,6 +8,7 @@ from django.db.models import Q
 
 # Create your views here.
 
+
 def main(request):
     current_week = timezone.now().isocalendar()[1]
 
@@ -16,14 +17,12 @@ def main(request):
         if current_week != hashtags.hash_date.isocalendar()[1]:
             hashtags.count = 0
             hashtags.save()
-    post = Post.objects.all().order_by('-likes')[:3]
-    hashtag = Hashtag.objects.filter(count__gt = 0).order_by('-count')[:6]
-    return render(request, "main.html", {"hashtag":hashtag, "post":post})
+    post = Post.objects.all().order_by("-likes")[:3]
+    hashtag = Hashtag.objects.filter(count__gt=0).order_by("-count")[:6]
+    return render(request, "main.html", {"hashtag": hashtag, "post": post})
 
 
-
-
-def create(request):    
+def create(request):
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
@@ -33,7 +32,7 @@ def create(request):
             form.save()
             # 해시태그
             for word in form.body.split():
-                if word[0] == '#':
+                if word[0] == "#":
                     hashtag, created = Hashtag.objects.get_or_create(content=word)
                     # rommmu :: hashtag 가 작성될 때 hash_date에 현재를 저장
                     hashtag.hash_date = timezone.now()
@@ -45,7 +44,8 @@ def create(request):
     else:
         form = PostForm()
         return render(request, "create.html", {"form": form})
-    
+
+
 def board(request):
     post = Post.objects.all()
     return render(request, "board.html", {"post": post})
@@ -81,14 +81,15 @@ def delete(request, id):
 # 해시태그 페이지
 def hashtag(request, hashtag_pk):
     hashtag = get_object_or_404(Hashtag, pk=hashtag_pk)
-    boards = hashtag.post_set.order_by('-pk')
-    return render(request, 'hashtag.html', {'hashtag': hashtag, 'boards': boards})
+    boards = hashtag.post_set.order_by("-pk")
+    return render(request, "hashtag.html", {"hashtag": hashtag, "boards": boards})
 
-   # 좋아요 함수
+
+# 좋아요 함수
 def like(request, pk):
     if not request.user.is_active:
-        return HttpResponse('로그인이 필요합니다.')
-    
+        return HttpResponse("로그인이 필요합니다.")
+
     post = get_object_or_404(Post, pk=pk)
     user = request.user
 
@@ -97,4 +98,9 @@ def like(request, pk):
     else:
         post.likes.add(user)
 
-    return redirect('detail', pk)
+    return redirect("detail", pk)
+
+
+def search(request):
+    if request.method == "POST":
+        search = request.POST.get("search")
