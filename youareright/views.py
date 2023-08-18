@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from .forms import PostForm
 from django.utils import timezone
 from .models import Post, Hashtag
@@ -81,3 +81,18 @@ def hashtag(request, hashtag_pk):
     hashtag = get_object_or_404(Hashtag, pk=hashtag_pk)
     boards = hashtag.post_set.order_by('-pk')
     return render(request, 'hashtag.html', {'hashtag': hashtag, 'boards': boards})
+
+   # 좋아요 함수
+def like(request, id):
+    if not request.user.is_active:
+        return HttpResponse('로그인이 필요합니다.')
+    
+    post = get_object_or_404(Post, id=id)
+    user = request.user
+
+    if post.likes.filter(id=user.id).exists():
+        post.likes.remove(user)
+    else:
+        post.likes.add(user)
+
+    return redirect('detail/' +str(id))

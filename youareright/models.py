@@ -1,5 +1,8 @@
 from django.db import models
 from django.utils import timezone
+from django.conf import settings
+
+
 # Create your models here.
 
 
@@ -26,6 +29,7 @@ class Post(models.Model):
     count = models.IntegerField(default=0)
     image = models.ImageField(upload_to="images/", blank=True, null=True)
     hashtags = models.ManyToManyField('Hashtag', blank=True)
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="likes")
 
     def __str__(self):
         return self.title
