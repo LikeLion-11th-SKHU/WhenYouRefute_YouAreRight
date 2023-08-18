@@ -12,9 +12,12 @@
 	<hr>
 	<form method="POST">
 		{% csrf_token %}
-		<table>
-			{{ form.as_table }}
-		</table>
+		<div>
+			아이디 : {{form.username}}
+		</div>
+		<div>
+			비밀번호 : {{form.password}}
+		</div>
 		<button type="submit">Login</button>
 	</form>
 </body>

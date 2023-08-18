@@ -1,0 +1,81 @@
+.popular-title {
+	display: flex;
+	align-items: baseline;
+	flex-direction: row;
+}
+
+.popular-title h2 {
+	font-family: 'omyu_pretty';
+	font-size: 1.5rem;
+	margin-right: 1vw;
+	margin-left: 1vw;
+	color: #2D8F12;
+}
+
+.popular-title h1 {
+	font-family: 'omyu_pretty';
+	font-size: 2rem;
+	margin-right: 2vw;
+}
+
+.popular-title p {
+	font-size: 1rem;
+}
+
+form {
+	margin-top: 3vh;
+	border: solid 1px black;
+	border-radius: 2% / 5%;
+	height: 60vh;
+	background-color: #EAF5F3;
+}
+
+.form-top {
+	display: flex;
+	justify-content: space-between;
+	margin: 2%;
+}
+
+.form-top-right {
+	display: flex;
+}
+
+.title{
+	width: 40%;
+	height: 3vh;
+    background-color: #fff;
+    border: solid 1px black;
+    font-family: 'SuncheonR';
+    font-size: 1rem;
+    color: var(--new-main-color);
+    border-radius: 5vw;
+    padding: 0.3vw 5vw 0.3vw 2vw; /* pdding이든 margin이든 상우하좌로 시계방향 */
+}
+
+.select {
+	width: 10vw;
+	height: 4.5vh;
+	border-radius: 50vw;
+	margin-right: 2vw;
+	padding: 2%;
+	justify-content: center;
+	display: flex;
+}
+
+.submit-button {
+	width: 10vw;
+	height: 4.5vh;
+	border-radius: 50vw;
+	background-color: #F9F2D5;
+	border: solid 1px black;
+	cursor: pointer;
+}
+
+input:-webkit-autofill {
+	box-shadow: 0 0 0 1000px #d3f0b1 inset;
+}
+
+/* 검색 유도 문구 */
+.main_input::placeholder{ 
+    color: lightgray;
+}
