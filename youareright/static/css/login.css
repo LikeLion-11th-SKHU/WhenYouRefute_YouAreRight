@@ -1,0 +1,86 @@
+.login_container {
+    max-width: 800px;
+    margin: 120px auto;
+}
+
+.login_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.fs20fw400 {
+    font-size: 20px;
+    font-weight: 400;
+}
+.fs36fw700 {
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.inpt_login {
+    display: block;
+    margin: 0 0 50px 0;
+    width: calc(100% - 40px);
+    font-size: 16px;
+    font-weight: 400;
+    height: 10px;
+    border-radius: 30px;
+    border: 1px solid #d9d9d9;  
+    background: #F9F9F9;
+    padding: 20px;
+
+}
+
+.loginPh {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 16px;
+    color: #000;
+    transition: top 0.2s;
+}
+
+
+.wrap_login {
+    width: 400px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.btn_login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 400;
+    width: 120px;
+    height: 40px;
+    border-radius: 30px;
+    border: 1px solid #000;
+    background: #AFD58A;
+    cursor: pointer;
+}
+
+.inpt_login:focus + .loginPh, 
+.inpt_login:not(:placeholder-shown) + .loginPh{
+    color: #888888;
+    font-size: 8px;
+    top: 10px;
+}
+
+.inpt_login:focus, .inpt_login:not(:placeholder-shown) {
+    border: 1px solid #000;
+    outline: 1px solid #000;
+}
+
+.grspan {
+    color: #888888;
+    font-size: 16px;
+}
+
+.anchor_signup {
+    color: #000;
+    
+}
